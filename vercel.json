@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/mcp.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "api/chat.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/mcp",
+      "dest": "/api/mcp.js"
+    },
+    {
+      "src": "/api/chat",
+      "dest": "/api/chat.js"
+    }
+  ],
+  "env": {
+    "DATABASE_URL": "@database_url",
+    "DATABASE_SSL": "@database_ssl",
+    "OPENAI_API_KEY": "@openai_api_key"
+  }
+}
+
