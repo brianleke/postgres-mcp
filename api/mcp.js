@@ -1,4 +1,4 @@
-import { createMcpHandler } from 'ai';
+import { createMcpHandler, withMcpAuth } from 'mcp-handler';
 import pg from 'pg';
 import { z } from 'zod';
 
@@ -20,6 +20,32 @@ function getPool() {
     });
   }
   return pool;
+}
+
+// Authentication function (optional - checks API key if provided)
+async function authenticateRequest(req) {
+  // If MCP_API_KEY is set in environment, require authentication
+  const requiredApiKey = process.env.MCP_API_KEY;
+  
+  if (!requiredApiKey) {
+    // No authentication required
+    return { authorized: true };
+  }
+  
+  // Check for API key in Authorization header or x-api-key header
+  const authHeader = req.headers.get('authorization');
+  const apiKeyHeader = req.headers.get('x-api-key');
+  
+  const providedKey = authHeader?.replace('Bearer ', '') || apiKeyHeader;
+  
+  if (providedKey === requiredApiKey) {
+    return { authorized: true };
+  }
+  
+  return { 
+    authorized: false, 
+    error: 'Invalid or missing API key' 
+  };
 }
 
 // MCP Tools for PostgreSQL operations
@@ -246,12 +272,17 @@ const tools = {
   }
 };
 
-// Create and export the MCP handler
-export const POST = createMcpHandler({
+// Create the MCP handler with optional authentication
+const mcpHandler = createMcpHandler({
   name: 'postgres-mcp-server',
   version: '1.0.0',
   tools,
 });
+
+// Wrap with authentication middleware if MCP_API_KEY is set
+export const POST = process.env.MCP_API_KEY 
+  ? withMcpAuth(mcpHandler, authenticateRequest)
+  : mcpHandler;
 
 // Health check endpoint
 export const GET = async (req) => {

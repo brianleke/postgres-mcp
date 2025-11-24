@@ -83,6 +83,7 @@ No SQL knowledge required! The AI automatically:
    DATABASE_URL=postgresql://username:password@localhost:5432/database_name
    DATABASE_SSL=false
    OPENAI_API_KEY=sk-your-openai-api-key  # Required for natural language interface
+   MCP_API_KEY=your-secret-api-key         # Optional: Secure your MCP endpoint
    ```
 
 4. **Run locally with Vercel CLI:**
@@ -137,6 +138,7 @@ No SQL knowledge required! The AI automatically:
 - `DATABASE_URL`: PostgreSQL connection string
 - `DATABASE_SSL`: Set to `true` if your database requires SSL (common for cloud providers)
 - `OPENAI_API_KEY`: Your OpenAI API key (required for natural language interface)
+- `MCP_API_KEY`: (Optional) API key for authenticating MCP endpoint requests
 
 ## API Endpoints
 
@@ -296,6 +298,7 @@ This MCP server works with any PostgreSQL-compatible database, including:
 
 - **[NATURAL-LANGUAGE.md](NATURAL-LANGUAGE.md)** - Complete guide to the natural language interface
 - **[DEPLOYMENT.md](DEPLOYMENT.md)** - Detailed deployment instructions
+- **[AUTHENTICATION.md](AUTHENTICATION.md)** - Guide to securing your MCP endpoint with API keys
 - **[example-chat.html](example-chat.html)** - Beautiful web interface for chatting with your database
 - **[example-chat-usage.js](example-chat-usage.js)** - Node.js examples for programmatic usage
 - **[example-usage.js](example-usage.js)** - Direct MCP tool usage examples

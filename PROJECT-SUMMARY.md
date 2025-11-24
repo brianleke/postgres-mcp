@@ -30,7 +30,7 @@ PostgresMCP/
 
 ### MCP Endpoint (`/api/mcp`)
 
-6 PostgreSQL tools accessible via MCP protocol:
+6 PostgreSQL tools accessible via MCP protocol using `createMcpHandler` and `withMcpAuth` from `mcp-handler`:
 
 | Tool | Description |
 |------|-------------|
@@ -55,6 +55,7 @@ AI-powered interface that:
 ### Security
 ✅ Parameterized queries (SQL injection protection)  
 ✅ Separate read/write operations  
+✅ Optional API key authentication (withMcpAuth)  
 ✅ Connection pooling  
 ✅ SSL/TLS support  
 ✅ Transaction rollback on errors  
@@ -135,6 +136,7 @@ Required variables:
 DATABASE_URL=postgresql://user:pass@host:5432/dbname
 DATABASE_SSL=true|false
 OPENAI_API_KEY=sk-your-key-here
+MCP_API_KEY=your-secret-key  # Optional: Enable authentication
 ```
 
 ## 📦 Dependencies
@@ -142,6 +144,7 @@ OPENAI_API_KEY=sk-your-key-here
 ### Core
 - `@modelcontextprotocol/sdk` - MCP protocol implementation
 - `ai` - Vercel AI SDK for tool integration
+- `mcp-handler` - MCP handler with authentication support
 - `@ai-sdk/openai` - OpenAI integration
 - `pg` - PostgreSQL client
 - `zod` - Schema validation
@@ -175,6 +178,7 @@ vercel --prod
 | `QUICKSTART.md` | 5-minute setup guide |
 | `NATURAL-LANGUAGE.md` | Complete guide to AI interface |
 | `DEPLOYMENT.md` | Production deployment guide |
+| `AUTHENTICATION.md` | Guide to securing MCP endpoint |
 | `PROJECT-SUMMARY.md` | This file - project overview |
 
 ## 🎨 User Interfaces
