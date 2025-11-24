@@ -19,11 +19,6 @@
       "src": "/api/chat",
       "dest": "/api/chat.js"
     }
-  ],
-  "env": {
-    "DATABASE_URL": "@database_url",
-    "DATABASE_SSL": "@database_ssl",
-    "OPENAI_API_KEY": "@openai_api_key"
-  }
+  ]
 }
 
