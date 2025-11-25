@@ -30,7 +30,7 @@ PostgresMCP/
 
 ### MCP Endpoint (`/api/mcp`)
 
-6 PostgreSQL tools accessible via MCP protocol using `createMcpHandler` and `withMcpAuth` from `mcp-handler`:
+6 PostgreSQL tools accessible via MCP protocol:
 
 | Tool | Description |
 |------|-------------|

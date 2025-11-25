@@ -6,16 +6,20 @@
       "use": "@vercel/node"
     },
     {
-        "src": "api/chat.js",
-        "use": "@vercel/node"
-      }
+      "src": "api/chat.js",
+      "use": "@vercel/node"
+    }
   ],
-    "routes": [
-      {
-        "src": "/api/(.*)",
-        "dest": "/api/mcp.js"
-      }
-    ]
-  }
+  "routes": [
+    {
+      "src": "/api/mcp",
+      "dest": "/api/mcp.js"
+    },
+    {
+      "src": "/api/chat",
+      "dest": "/api/chat.js"
+    }
+  ]
+}
   
 
